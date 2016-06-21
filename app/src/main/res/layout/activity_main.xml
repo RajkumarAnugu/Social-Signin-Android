@@ -16,10 +16,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
+        android:text="Google SignIn" />
+
+    <Button
+        android:id="@+id/g_plus_login_btn"
+        style="@style/GoogleSignInButton"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:clickable="false"
         android:text="@string/bt_google" />
 
     <Button
-        android:id="@+id/g_logout_btn"
+        android:id="@+id/g_plus_logout_btn"
         style="@style/GoogleSignInButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

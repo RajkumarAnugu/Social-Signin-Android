@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\Projects\Examples\SocialLogin2\linkedinsdk\src\main\assets"/><source path="F:\Projects\Examples\SocialLogin2\linkedinsdk\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="F:\Projects\Examples\SocialLogin2\linkedinsdk\src\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="F:\Projects\Examples\Social-Signin-Android\linkedinsdk\src\main\assets"/><source path="F:\Projects\Examples\Social-Signin-Android\linkedinsdk\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="F:\Projects\Examples\Social-Signin-Android\linkedinsdk\src\debug\assets"/></dataSet></merger>

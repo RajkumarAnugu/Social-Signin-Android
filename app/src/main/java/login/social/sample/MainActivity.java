@@ -13,6 +13,9 @@ import com.google.android.gms.plus.model.people.Person;
 import login.social.sample.facebookSignIn.FacebookHelper;
 import login.social.sample.facebookSignIn.FacebookResponse;
 import login.social.sample.facebookSignIn.FacebookUser;
+import login.social.sample.googleAuthSignin.GoogleAuthResponse;
+import login.social.sample.googleAuthSignin.GoogleAuthUser;
+import login.social.sample.googleAuthSignin.GoogleSignInHelper;
 import login.social.sample.googleSignIn.GooglePlusSignInHelper;
 import login.social.sample.googleSignIn.GoogleResponseListener;
 import login.social.sample.linkedInSiginIn.LinkedInHelper;
@@ -24,10 +27,11 @@ import login.social.sample.twitterSignIn.TwitterUser;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
-        GoogleResponseListener, FacebookResponse, TwitterResponse, LinkedInResponse {
+        GoogleResponseListener, FacebookResponse, TwitterResponse, LinkedInResponse, GoogleAuthResponse {
 
     private FacebookHelper mFbHelper;
     private GooglePlusSignInHelper mGHelper;
+    private GoogleSignInHelper mGAuthHelper;
     private TwitterHelper mTwitterHelper;
     private LinkedInHelper mLinkedInHelper;
 
@@ -40,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Google api initialization
         mGHelper = new GooglePlusSignInHelper(this, this);
+
+        //google auth initialization
+        mGAuthHelper = new GoogleSignInHelper(this, null, this);
 
         //fb api initialization
         mFbHelper = new FacebookHelper(this,
@@ -57,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //set sign in button
         findViewById(R.id.g_login_btn).setOnClickListener(this);
-        findViewById(R.id.g_logout_btn).setOnClickListener(this);
+        findViewById(R.id.g_plus_login_btn).setOnClickListener(this);
+        findViewById(R.id.g_plus_logout_btn).setOnClickListener(this);
         findViewById(R.id.twitter_login_button).setOnClickListener(this);
         findViewById(R.id.bt_act_login_fb).setOnClickListener(this);
         findViewById(R.id.linkedin_login_button).setOnClickListener(this);
@@ -68,9 +76,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.g_login_btn:
+                mGAuthHelper.performSignIn(this);
+                break;
+            case R.id.g_plus_login_btn:
                 mGHelper.performSignIn();
                 break;
-            case R.id.g_logout_btn:
+            case R.id.g_plus_logout_btn:
                 mGHelper.signOut();
                 break;
             case R.id.bt_act_login_fb:
@@ -106,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //handle results
         mFbHelper.onActivityResult(requestCode, resultCode, data);
         mGHelper.onActivityResult(requestCode, resultCode, data);
+        mGAuthHelper.onActivityResult(requestCode, resultCode, data);
         mTwitterHelper.onActivityResult(requestCode, resultCode, data);
         mLinkedInHelper.onActivityResult(requestCode, resultCode, data);
     }
@@ -173,5 +185,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onLinkedInProfileReceived(LinkedInUser user) {
         Toast.makeText(this, "LinkedIn user data: name= " + user.name + " email= " + user.email, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGoogleAuthSignIn(GoogleAuthUser user) {
+        Toast.makeText(this, "Google user data: name= " + user.name + " email= " + user.email, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGoogleAuthSignInFailed() {
+        Toast.makeText(this, "Google sign in failed.", Toast.LENGTH_SHORT).show();
     }
 }
