@@ -22,9 +22,9 @@ import com.google.android.gms.plus.model.people.Person;
  */
 public class GooglePlusSignInHelper implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-    private static final int SIGN_IN_REQUEST_CODE = 1;
-    private static final int ERROR_DIALOG_REQUEST_CODE = 2;
-    private static final int PERMISSIONS_REQUEST_GET_ACCOUNTS = 3;
+    private static final int SIGN_IN_REQUEST_CODE = 101;
+    private static final int ERROR_DIALOG_REQUEST_CODE = 102;
+    private static final int PERMISSIONS_REQUEST_GET_ACCOUNTS = 103;
 
     private GoogleResponseListener mListener;
     private boolean isResolutionInProgress;
